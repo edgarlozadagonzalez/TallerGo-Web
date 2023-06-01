@@ -26,4 +26,25 @@ func main() {
 	for _, estudiante := range peoresEstudiantes {
 		fmt.Printf("Nombre: %s, Promedio: %f\n", estudiante.Nombre, estudiante.CalcularPromedio())
 	}
+
+	top10MEstudiantesPorCurso := models.Top10MejoresEstudiantesPorCurso(estudiantes)
+
+	fmt.Println("Top 10 mejores estudiantes por curso:")
+	for curso, estudiantes := range top10MEstudiantesPorCurso {
+		fmt.Printf("Curso: %s\n", curso)
+		for _, estudiante := range estudiantes {
+			fmt.Printf("- Estudiante: %s %s, Promedio: %.2f\n", estudiante.Nombre, estudiante.Apellido, estudiante.BuscarNota(curso))
+		}
+		fmt.Println()
+	}
+
+	top10PEstudiantesPorCurso := models.Top10PeoresEstudiantesPorCurso(estudiantes)
+	fmt.Println("Top 10 peores estudiantes por curso:")
+	for curso, estudiantes := range top10PEstudiantesPorCurso {
+		fmt.Printf("Curso: %s\n", curso)
+		for _, estudiante := range estudiantes {
+			fmt.Printf("- Estudiante: %s %s, Promedio: %.2f\n", estudiante.Nombre, estudiante.Apellido, estudiante.BuscarNota(curso))
+		}
+		fmt.Println()
+	}
 }
