@@ -47,4 +47,18 @@ func main() {
 		}
 		fmt.Println()
 	}
+
+	fmt.Println("Estudiantes masculinos mayores de edad:")
+	estudiantesMasculinos := models.EstudiantesMasculinos(estudiantes)
+	estudiantesMasculinosDeMayorEdad := models.EstudiantesMayorEdad(estudiantesMasculinos)
+	for _, estudiante := range estudiantesMasculinosDeMayorEdad {
+		fmt.Printf("- Estudiante: %s %s, Edad: %d\n", estudiante.Nombre, estudiante.Apellido, estudiante.Edad)
+	}
+	fmt.Println()
+	fmt.Println("Estudiantes femeninos mayores de edad:")
+	estudiantesFemeninos := models.EstudiantesFemeninos(estudiantes)
+	estudiantesFemeninosDeMayorEdad := models.EstudiantesMayorEdad(estudiantesFemeninos)
+	for _, estudiante := range estudiantesFemeninosDeMayorEdad {
+		fmt.Printf("- Estudiante: %s %s, Edad: %d\n", estudiante.Nombre, estudiante.Apellido, estudiante.Edad)
+	}
 }

@@ -142,3 +142,45 @@ func Top10PeoresEstudiantesPorCurso(estudiantes []Estudiante) map[string][]Estud
 	}
 	return top10
 }
+
+// SOLUCION 5 Y 6 FEMENINOS Y MASCULINOS DE MAYOR EDAD
+
+func EstudiantesFemeninos(estudiantes []Estudiante) []Estudiante {
+	estudiantesFemeninos := []Estudiante{}
+
+	for _, estudiante := range estudiantes {
+		if estudiante.Gender == "female" {
+			estudiantesFemeninos = append(estudiantesFemeninos, estudiante)
+		}
+	}
+
+	return estudiantesFemeninos
+}
+
+func EstudiantesMasculinos(estudiantes []Estudiante) []Estudiante {
+	estudiantesMasculinos := []Estudiante{}
+
+	for _, estudiante := range estudiantes {
+		if estudiante.Gender == "male" {
+			estudiantesMasculinos = append(estudiantesMasculinos, estudiante)
+		}
+	}
+
+	return estudiantesMasculinos
+}
+
+func EstudiantesMayorEdad(estudiantes []Estudiante) []Estudiante {
+	estudiantesMayorEdad := []Estudiante{}
+	mayorEdad := -1
+
+	for _, estudiante := range estudiantes {
+		if estudiante.Edad > mayorEdad {
+			mayorEdad = estudiante.Edad
+			estudiantesMayorEdad = []Estudiante{estudiante}
+		} else if estudiante.Edad == mayorEdad {
+			estudiantesMayorEdad = append(estudiantesMayorEdad, estudiante)
+		}
+	}
+
+	return estudiantesMayorEdad
+}
