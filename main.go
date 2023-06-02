@@ -10,7 +10,12 @@ import (
 func main() {
 
 	filename := "data/generated.json"
-	estudiantes, err := json.LeerJSON(filename)
+	data, err := json.LeerJSON(filename)
+	if err != nil {
+		fmt.Printf("Error: %v\n", err)
+	}
+
+	estudiantes, err := json.ParsearEstudiantes(data)
 	if err != nil {
 		fmt.Printf("Error: %v\n", err)
 	}
