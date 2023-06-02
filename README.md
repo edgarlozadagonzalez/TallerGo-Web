@@ -11,11 +11,7 @@ sus correspondientes cursos y realizar las siguientes consultas:
 4. Top 10 estudiantes con peores notas de cada curso.
 5. Estudiante masculino de mayor edad.
 6. Estudiante femenino de mayor edad.
-7. Por cada curso calcular: 
-  Promedio.  
-  Rango.
-  Varianza.
-  Desviación estándar.
+7. Por cada curso calcular:Promedio, Rango, Varianza y Desviación estándar.
 12. Reporte de estudiantes que se matricularon en el año pasado (2022).
 13. Promedio de estudiantes por cada rango de edad (20-29, 30-39, 40-
 49,...). Por ejemplo, promedio del primer rango de 20-29 es 3.4, 
