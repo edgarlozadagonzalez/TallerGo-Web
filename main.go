@@ -22,5 +22,5 @@ func main() {
 
 	http.HandleFunc("/reporteMatriculas", controllers.ReporteMatriculas)
 	http.HandleFunc("/promedioRangoEdad", controllers.PromedioRangoEdad)
-	http.ListenAndServe(":8080", nil)
+	http.ListenAndServe(":80", nil)
 }
