@@ -2,7 +2,7 @@ package repositories
 
 import "math"
 
-//SOLUCION 7 CADA FUNCION RECIBE UNA LISTA DE NOTAS PARA REALIZAR SU RESPECTIVO CALCULO.
+//SOLUCIÓN 7 CADA FUNCIÓN RECIBE UNA LISTA DE NOTAS PARA REALIZAR SU RESPECTIVO CÁLCULO.
 func CalcularPromedio(notas []float64) float64 {
 	var suma float64
 	for _, nota := range notas {

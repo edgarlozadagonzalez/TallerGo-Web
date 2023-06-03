@@ -7,7 +7,7 @@ import (
 	models "github.com/edgarlozadagonzalez/TallerGo-Web/models"
 )
 
-// SOLUCION 1 Y 2 FUNCIONES NECESARIAS PARA OBTENER MEJORES Y PEORES PROMEDIOS DE ESTUDIANTES
+// SOLUCIÓN 1 Y 2 FUNCIONES NECESARIAS PARA OBTENER MEJORES Y PEORES PROMEDIOS DE ESTUDIANTES
 func MejoresEstudiantes(estudiantes []models.Estudiante) []models.Estudiante {
 	mejor_promedio := 0.0
 	var mejores_estudiantes []models.Estudiante
@@ -40,7 +40,7 @@ func PeoresEstudiantes(estudiantes []models.Estudiante) []models.Estudiante {
 	return peores_estudiantes
 }
 
-// SOLUCION 3 Y 4 FUNCIONES NECESARIAS PARA OBTENER EL TOP N MEJORES Y PEORES ESTUDIANTES DE CADA CURSO
+// SOLUCIÓN 3 Y 4 FUNCIONES NECESARIAS PARA OBTENER EL TOP N MEJORES Y PEORES ESTUDIANTES DE CADA CURSO
 
 func ObtenerEstudiantesPorCurso(estudiantes []models.Estudiante, idCurso int) []models.Estudiante {
 	var estudiantesCurso []models.Estudiante
@@ -78,8 +78,7 @@ func PeoresEstudiantesPorCurso(estudiantes []models.Estudiante, idCurso int, n i
 	return estudiantesCurso[:n]
 }
 
-// SOLUCION 5 Y 6 FUNCIONES NECESARIAS PARA OBTENER LOS ESTUDIANTES MASCULINOS, FEMENINOS DE MAYOR EDAD
-
+// SOLUCIÓN 5 Y 6 FUNCIONES NECESARIAS PARA OBTENER LOS ESTUDIANTES MASCULINOS, FEMENINOS DE MAYOR EDAD
 func EstudiantesFemeninos(estudiantes []models.Estudiante) []models.Estudiante {
 	estudiantesFemeninos := []models.Estudiante{}
 
@@ -120,7 +119,7 @@ func EstudiantesMayorEdad(estudiantes []models.Estudiante) []models.Estudiante {
 	return estudiantesMayorEdad
 }
 
-// SOLUCION 7 FUNCIONES NECESARIAS PARA REALIZAR CALCULOS ESTADISTICOS A LAS NOTAS DE CADA CURSO
+// SOLUCIÓN 7 FUNCIONES NECESARIAS PARA REALIZAR CÁLCULOS ESTADÍSTICOS A LAS NOTAS DE CADA CURSO
 
 func ObtenerNotasPorCurso(estudiantes []models.Estudiante, idCurso int) []float64 {
 	estudiantesCurso := ObtenerEstudiantesPorCurso(estudiantes, idCurso)
@@ -135,7 +134,7 @@ func ObtenerNotasPorCurso(estudiantes []models.Estudiante, idCurso int) []float6
 	return notas
 }
 
-// SOLUCION 8 FUNCIONES NECESARIAS PARA REALIZAR EL REPORTE DE LOS ESTUDIANTES QUE SE MATRICULARON EN UN AÑO X
+// SOLUCIÓN 8 FUNCIONES NECESARIAS PARA REALIZAR EL REPORTE DE LOS ESTUDIANTES QUE SE MATRICULARON EN UN AÑO X
 func ObtenerEstudiantesMatriculadosEnAnio(estudiantes []models.Estudiante, anio int) []models.Estudiante {
 	var estudiantesMatriculados []models.Estudiante
 
@@ -152,7 +151,7 @@ func ObtenerEstudiantesMatriculadosEnAnio(estudiantes []models.Estudiante, anio 
 	return estudiantesMatriculados
 }
 
-// SOLUCION 9 FUNCIONES NECESARIAS PARA OBTENER EL PROMEDIO DE NOTA DE LOS ESTUDIANTES EN UN RANGO DE EDAD
+// SOLUCIÓN 9 FUNCIONES NECESARIAS PARA OBTENER EL PROMEDIO DE NOTA DE LOS ESTUDIANTES EN UN RANGO DE EDAD
 func ObtenerEstudiantesPorRangoEdad(estudiantes []models.Estudiante, edadMin int, edadMax int) []models.Estudiante {
 	var estudiantesRango []models.Estudiante
 

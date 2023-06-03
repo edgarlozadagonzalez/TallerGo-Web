@@ -35,7 +35,7 @@ func TopMejoresEstudiantes(w http.ResponseWriter, r *http.Request) {
 	cursoIdStr := r.FormValue("cursoID")
 	topStr := r.FormValue("top")
 	opciones := map[int]string{
-		0: "Algebra lineal",
+		0: "Álgebra lineal",
 		1: "Calculo diferencial",
 		2: "POO",
 		3: "CTD",
@@ -56,12 +56,12 @@ func TopMejoresEstudiantes(w http.ResponseWriter, r *http.Request) {
 	if cursoIdStr != "" && topStr != "" {
 		cursoID, err := strconv.Atoi(cursoIdStr)
 		if err != nil {
-			http.Error(w, "El numero de codigo no es válido", http.StatusBadRequest)
+			http.Error(w, "El número de código para el curso no es válido", http.StatusBadRequest)
 			return
 		}
 		top, err := strconv.Atoi(topStr)
 		if err != nil {
-			http.Error(w, "El numero de top no es válido", http.StatusBadRequest)
+			http.Error(w, "El número para el top no es válido", http.StatusBadRequest)
 			return
 		}
 		estudiantes := ObtenerEstudiantes()
@@ -93,7 +93,7 @@ func TopPeoresEstudiantes(w http.ResponseWriter, r *http.Request) {
 	cursoIdStr := r.FormValue("cursoID")
 	topStr := r.FormValue("top")
 	opciones := map[int]string{
-		0: "Algebra lineal",
+		0: "Álgebra lineal",
 		1: "Calculo diferencial",
 		2: "POO",
 		3: "CTD",
@@ -113,12 +113,12 @@ func TopPeoresEstudiantes(w http.ResponseWriter, r *http.Request) {
 	if cursoIdStr != "" && topStr != "" {
 		cursoID, err := strconv.Atoi(cursoIdStr)
 		if err != nil {
-			http.Error(w, "El numero de codigo no es válido", http.StatusBadRequest)
+			http.Error(w, "El número de código para el curso no es válido", http.StatusBadRequest)
 			return
 		}
 		top, err := strconv.Atoi(topStr)
 		if err != nil {
-			http.Error(w, "El numero de top no es válido", http.StatusBadRequest)
+			http.Error(w, "El número para el top no es válido", http.StatusBadRequest)
 			return
 		}
 		estudiantes := ObtenerEstudiantes()
@@ -150,7 +150,7 @@ func TopPeoresEstudiantes(w http.ResponseWriter, r *http.Request) {
 func CalcularEstadisticas(w http.ResponseWriter, r *http.Request) {
 	cursoIdStr := r.FormValue("cursoID")
 	opciones := map[int]string{
-		0: "Algebra lineal",
+		0: "Álgebra lineal",
 		1: "Calculo diferencial",
 		2: "POO",
 		3: "CTD",
@@ -169,7 +169,7 @@ func CalcularEstadisticas(w http.ResponseWriter, r *http.Request) {
 	if cursoIdStr != "" {
 		cursoID, err := strconv.Atoi(cursoIdStr)
 		if err != nil {
-			http.Error(w, "El numero de codigo curso no es válido", http.StatusBadRequest)
+			http.Error(w, "El número de código para el curso no es válido", http.StatusBadRequest)
 			return
 		}
 		estudiantes := ObtenerEstudiantes()
@@ -227,7 +227,7 @@ func MasculinoMasLongevo(w http.ResponseWriter, r *http.Request) {
 	estudiantes = repositories.EstudiantesMasculinos(estudiantes)
 	data := PageData{
 		Title: "TallerGO-Web | Masculino Más Longevo",
-		H1:    "Estudiante masculino mas longevo",
+		H1:    "Estudiante masculino más longevo",
 		Icon: `<svg xmlns="http://www.w3.org/2000/svg" class="bi mt-4 mb-3" width="100"
 		height="100" fill="currentColor" class="bi bi-gender-male" viewBox="0 0 16 16">
 		  <path fill-rule="evenodd" d="M9.5 2a.5.5 0 0 1 0-1h5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V2.707L9.871 6.836a5 5 0 1 1-.707-.707L13.293 2H9.5zM6 6a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/>
@@ -243,7 +243,7 @@ func FemeninaMasLongeva(w http.ResponseWriter, r *http.Request) {
 	estudiantes = repositories.EstudiantesFemeninos(estudiantes)
 	data := PageData{
 		Title: "TallerGO-Web | Femenina Más Longeva",
-		H1:    "Estudiante femenina mas longeva",
+		H1:    "Estudiante femenina más longeva",
 		Icon: `<svg xmlns="http://www.w3.org/2000/svg" class="bi mt-4 mb-3" width="100"
 		height="100" fill="currentColor" class="bi bi-gender-female" viewBox="0 0 16 16">
 		  <path fill-rule="evenodd" d="M8 1a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM3 5a5 5 0 1 1 5.5 4.975V12h2a.5.5 0 0 1 0 1h-2v2.5a.5.5 0 0 1-1 0V13h-2a.5.5 0 0 1 0-1h2V9.975A5 5 0 0 1 3 5z"/>
@@ -259,8 +259,8 @@ func ReporteMatriculas(w http.ResponseWriter, r *http.Request) {
 	filepath := "views/reporteMatriculas.html"
 
 	data := PageData{
-		Title: "TallerGO-Web | Reporte Matriculas",
-		H1:    "Reporte de matriculas por año",
+		Title: "TallerGO-Web | Reporte Matrículas",
+		H1:    "Reporte de matrículas por año",
 		Icon: `<svg xmlns="http://www.w3.org/2000/svg" class="bi mt-4 mb-3" width="100"
 			height="100" fill="currentColor" class="bi bi-table" viewBox="0 0 16 16">
 			  <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm15 2h-4v3h4V4zm0 4h-4v3h4V8zm0 4h-4v3h3a1 1 0 0 0 1-1v-2zm-5 3v-3H6v3h4zm-5 0v-3H1v2a1 1 0 0 0 1 1h3zm-4-4h4V8H1v3zm0-4h4V4H1v3zm5-3v3h4V4H6zm4 4H6v3h4V8z"/>
@@ -278,7 +278,7 @@ func ReporteMatriculas(w http.ResponseWriter, r *http.Request) {
 		estudiantes := ObtenerEstudiantes()
 		reporte := repositories.ObtenerEstudiantesMatriculadosEnAnio(estudiantes, year)
 
-		data.H1 = fmt.Sprintf("Reporte de matriculas para el año %d", year)
+		data.H1 = fmt.Sprintf("Reporte de matrículas para el año %d", year)
 		data.Data = reporte
 		if len(reporte) == 0 {
 			data.H1 = fmt.Sprintf("No hay estudiantes matriculados para el año %d ", year)
@@ -294,7 +294,7 @@ func PromedioRangoEdad(w http.ResponseWriter, r *http.Request) {
 
 	data := PageData{
 		Title: "TallerGO-Web | Promedio Rango Edad",
-		H1:    "Promedio de notas de los estudiantes dentro de un rango de edad",
+		H1:    "Promedio de notas de los estudiantes en un rango de edad",
 		Icon: `<svg xmlns="http://www.w3.org/2000/svg" class="bi mt-4 mb-3" width="100"
 			height="100" fill="currentColor" class="bi bi-calendar3-range-fill" viewBox="0 0 16 16">
 			  <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2h16a2 2 0 0 0-2-2H2zM0 8V3h16v2h-6a1 1 0 1 0 0 2h6v7a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-4h6a1 1 0 1 0 0-2H0z"/>
