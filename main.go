@@ -1,12 +1,20 @@
 package main
 
 import (
+	"log"
 	"net/http"
+	"os"
 
 	"github.com/edgarlozadagonzalez/TallerGo-Web/controllers"
 )
 
 func main() {
+
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+
 	fs := http.FileServer(http.Dir("./static"))
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
 
@@ -22,5 +30,7 @@ func main() {
 
 	http.HandleFunc("/reporteMatriculas", controllers.ReporteMatriculas)
 	http.HandleFunc("/promedioRangoEdad", controllers.PromedioRangoEdad)
-	http.ListenAndServe(":80", nil)
+	log.Println("listening on", port)
+	http.ListenAndServe(":"+port, nil)
+	log.Fatal(http.ListenAndServe(":"+port, nil))
 }
