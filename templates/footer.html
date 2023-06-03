@@ -1,18 +1,42 @@
 {{define "footer"}}
-<footer class="py-3" id="footerStatic">
+<footer class="py-3" id="footer" class="sticky-footer">
     <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Features</a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Pricing</a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-white">Home</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-white">Features</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-white">About</a></li>
     </ul>
-    <p class="text-center text-body-secondary">© 2023 Company, Inc</p>
+    <p class="text-center text-white">© 2023 Company, Inc</p>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
     crossorigin="anonymous"></script>
 </script>
+<script>window.addEventListener('DOMContentLoaded', function () {
+        var body = document.body;
+        var html = document.documentElement;
+
+        // Función para verificar si se necesita scrollback
+        function requiresScrollback() {
+            return Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight) > window.innerHeight;
+        }
+
+        // Función para ajustar la posición del footer
+        function adjustFooterPosition() {
+            var footer = document.getElementById('footer');
+            if (requiresScrollback()) {
+                footer.classList.remove('sticky-footer');
+                footer.classList.add('move-footer');
+            } else {
+                footer.classList.add('sticky-footer');
+            }
+        }
+
+        // Ajustar la posición del footer al cargar la página y al cambiar el tamaño de la ventana
+        adjustFooterPosition();
+        window.addEventListener('resize', adjustFooterPosition);
+    });</script>
 </body>
 
 </html>

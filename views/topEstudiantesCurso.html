@@ -1,7 +1,7 @@
 {{template "head" .}}
 {{template "header" .}}
 <div class="container my-5">
-    <div class="p-5 text-center bg-body-tertiary rounded-3">
+    <div class="p-5 text-center bg-body-tertiary rounded-3 tarjeta">
         {{.Icon}}
         <h1 class="text-body-emphasis">{{.H1}}</h1>
         <form action="{{.Ruta}}" method="GET">
@@ -27,8 +27,8 @@
         </form>
         {{if .Data}}
         <div class="table-responsive">
-            <table class="table table-striped">
-                <thead class="thead-dark">
+            <table class="table table-striped table-dark">
+                <thead>
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Nombre</th>
