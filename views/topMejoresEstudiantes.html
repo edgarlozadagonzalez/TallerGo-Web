@@ -1,0 +1,64 @@
+{{template "head" .}}
+{{template "header" .}}
+<div class="container my-5">
+    <div class="p-5 text-center bg-body-tertiary rounded-3">
+        {{.Icon}}
+        <h1 class="text-body-emphasis">{{.H1}}</h1>
+        <form action="/curso/topMejoresEstudiantes" method="GET">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Cursos</span>
+                </div>
+                <select class="form-control" id="inputGroupSelect01" name="cursoID">
+                    <option selected>Elige un curso</option>
+                    <option value="0">Algebra lineal</option>
+                    <option value="1">Calculo diferencial</option>
+                    <option value="2">POO</option>
+                    <option value="3">CTD</option>
+                </select>
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Top</span>
+                </div>
+                <input type="number" class="form-control" name="top" required min="1">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">Buscar</button>
+                </div>
+            </div>
+        </form>
+        {{if .Data}}
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">Edad</th>
+                        <th scope="col">Sexo</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Telefono</th>
+                        <th scope="col">Matriculado</th>
+                        <th scope="col">Nota</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{range .Data}}
+                    <tr>
+                        <th scope="row">{{.Estudiante.Index}}</th>
+                        <td>{{.Estudiante.Nombre}}</td>
+                        <td>{{.Estudiante.Apellido}}</td>
+                        <td>{{.Estudiante.Edad}}</td>
+                        <td>{{.Estudiante.Gender}}</td>
+                        <td>{{.Estudiante.Email}}</td>
+                        <td>{{.Estudiante.Phone}}</td>
+                        <td>{{.Estudiante.Matriculado}}</td>
+                        <td>{{printf "%.2f" .Nota}}</td>
+                    </tr>
+                    {{end}}
+                </tbody>
+            </table>
+        </div>
+        {{end}}
+    </div>
+</div>
+{{template "footer" .}}

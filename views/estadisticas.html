@@ -1,0 +1,48 @@
+{{template "head" .}}
+{{template "header" .}}
+<div class="container my-5">
+    <div class="p-5 text-center bg-body-tertiary rounded-3">
+        {{.Icon}}
+        <h1 class="text-body-emphasis">{{.H1}}</h1>
+        <form action="/curso/calcularEstadisticas" method="GET">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Cursos</span>
+                </div>
+                <select class="form-control" id="inputGroupSelect01" name="cursoID">
+                    <option selected>Elige un curso</option>
+                    <option value="0">Algebra lineal</option>
+                    <option value="1">Calculo diferencial</option>
+                    <option value="2">POO</option>
+                    <option value="3">CTD</option>
+                </select>
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">Buscar</button>
+                </div>
+            </div>
+        </form>
+        {{if .Data}}
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Promedio</th>
+                        <th scope="col">Rango</th>
+                        <th scope="col">Varianza</th>
+                        <th scope="col">Desviación estándar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">{{printf "%.2f" .Data.Promedio}}</th>
+                        <td>{{printf "%.2f" .Data.Rango}}</td>
+                        <td>{{printf "%.2f" .Data.Varianza}}</td>
+                        <td>{{printf "%.2f" .Data.Desviacion_estandar}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        {{end}}
+    </div>
+</div>
+{{template "footer" .}}

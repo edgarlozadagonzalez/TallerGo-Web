@@ -48,7 +48,6 @@ func ObtenerEstudiantesPorCurso(estudiantes []models.Estudiante, idCurso int) []
 		for _, curso := range estudiante.Cursos {
 			if curso.ID == idCurso {
 				estudiantesCurso = append(estudiantesCurso, estudiante)
-				break
 			}
 		}
 	}
@@ -123,19 +122,17 @@ func EstudiantesMayorEdad(estudiantes []models.Estudiante) []models.Estudiante {
 
 // SOLUCION 7 FUNCIONES NECESARIAS PARA REALIZAR CALCULOS ESTADISTICOS A LAS NOTAS DE CADA CURSO
 
-func ObtenerNotas(estudiantes []models.Estudiante) []float64 {
+func ObtenerNotasPorCurso(estudiantes []models.Estudiante, idCurso int) []float64 {
+	estudiantesCurso := ObtenerEstudiantesPorCurso(estudiantes, idCurso)
 	notas := []float64{}
-	for _, estudiante := range estudiantes {
+	for _, estudiante := range estudiantesCurso {
 		for _, curso := range estudiante.Cursos {
-			notas = append(notas, curso.Nota)
+			if curso.ID == idCurso {
+				notas = append(notas, curso.Nota)
+			}
 		}
 	}
 	return notas
-}
-
-func ObtenerNotasPorCurso(estudiantes []models.Estudiante, idCurso int) []float64 {
-	estudiantesCurso := ObtenerEstudiantesPorCurso(estudiantes, idCurso)
-	return ObtenerNotas(estudiantesCurso)
 }
 
 // SOLUCION 8 FUNCIONES NECESARIAS PARA REALIZAR EL REPORTE DE LOS ESTUDIANTES QUE SE MATRICULARON EN UN AÑO X
@@ -165,6 +162,16 @@ func ObtenerEstudiantesPorRangoEdad(estudiantes []models.Estudiante, edadMin int
 		}
 	}
 	return estudiantesRango
+}
+
+func ObtenerNotas(estudiantes []models.Estudiante) []float64 {
+	notas := []float64{}
+	for _, estudiante := range estudiantes {
+		for _, curso := range estudiante.Cursos {
+			notas = append(notas, curso.Nota)
+		}
+	}
+	return notas
 }
 
 func ObtenerNotasPorRangoEdad(estudiantes []models.Estudiante, edadMin int, edadMax int) []float64 {

@@ -1,0 +1,41 @@
+{{template "head" .}}
+{{template "header" .}}
+<div class="container my-5">
+    <div class="p-5 text-center bg-body-tertiary rounded-3">
+        {{.Icon}}
+        <h1 class="text-body-emphasis">{{.H1}}</h1>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">Edad</th>
+                        <th scope="col">Sexo</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Telefono</th>
+                        <th scope="col">Matriculado</th>
+                        <th scope="col">Promedio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{range .Data}}
+                    <tr>
+                        <th scope="row">{{.Index}}</th>
+                        <td>{{.Nombre}}</td>
+                        <td>{{.Apellido}}</td>
+                        <td>{{.Edad}}</td>
+                        <td>{{.Gender}}</td>
+                        <td>{{.Email}}</td>
+                        <td>{{.Phone}}</td>
+                        <td>{{.Matriculado}}</td>
+                        <td>{{printf "%.2f" .CalcularPromedio}}</td>
+                    </tr>
+                    {{end}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{{template "footer" .}}
