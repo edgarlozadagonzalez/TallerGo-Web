@@ -7,7 +7,7 @@
         {{if .Data}}
             <h1 class="text-body-emphasis">{{printf "%.2f" .Data}}</h1>
         {{end}}
-        <form action="/promedioRangoEdad" method="GET">
+        <form action="{{.Rutaget}}" method="GET">
             <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="">Rango de edad</span>

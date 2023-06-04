@@ -13,17 +13,15 @@ import (
 )
 
 type PageData struct {
-	Title string
-	H1    string
-	Icon  string
-	Data  interface{}
-	Ruta  string
+	Title   string
+	H1      string
+	Icon    string
+	Data    interface{}
+	Rutaget string
 }
 
 func Index(w http.ResponseWriter, r *http.Request) {
-	data := struct {
-		Title string
-	}{
+	data := PageData{
 		Title: "TallerGO-Web",
 	}
 	filepath := "views/index.html"
@@ -50,8 +48,8 @@ func TopMejoresEstudiantes(w http.ResponseWriter, r *http.Request) {
 	  <path d="m8 0 1.669.864 1.858.282.842 1.68 1.337 1.32L13.4 6l.306 1.854-1.337 1.32-.842 1.68-1.858.282L8 12l-1.669-.864-1.858-.282-.842-1.68-1.337-1.32L2.6 6l-.306-1.854 1.337-1.32.842-1.68L6.331.864 8 0z"/>
 	  <path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z"/>
 	</svg>`,
-		Data: nil,
-		Ruta: "/curso/topMejoresEstudiantes",
+		Data:    nil,
+		Rutaget: "/curso/topMejoresEstudiantes",
 	}
 	if cursoIdStr != "" && topStr != "" {
 		cursoID, err := strconv.Atoi(cursoIdStr)
@@ -107,8 +105,8 @@ func TopPeoresEstudiantes(w http.ResponseWriter, r *http.Request) {
 		height="100" fill="currentColor" class="bi bi-exclamation-triangle-fill figura" viewBox="0 0 16 16">
 	  <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
 	</svg>`,
-		Data: nil,
-		Ruta: "/curso/topPeoresEstudiantes",
+		Data:    nil,
+		Rutaget: "/curso/topPeoresEstudiantes",
 	}
 	if cursoIdStr != "" && topStr != "" {
 		cursoID, err := strconv.Atoi(cursoIdStr)
@@ -164,7 +162,8 @@ func CalcularEstadisticas(w http.ResponseWriter, r *http.Request) {
 		height="100" fill="currentColor" class="bi bi-calculator-fill" viewBox="0 0 16 16">
 	  <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm2 .5v2a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-7a.5.5 0 0 0-.5.5zm0 4v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5zM4.5 9a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zM4 12.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5zM7.5 6a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zM7 9.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5zm.5 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zM10 6.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5zm.5 2.5a.5.5 0 0 0-.5.5v4a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 0-.5-.5h-1z"/>
 	</svg>`,
-		Data: nil,
+		Data:    nil,
+		Rutaget: "/curso/calcularEstadisticas",
 	}
 	if cursoIdStr != "" {
 		cursoID, err := strconv.Atoi(cursoIdStr)
@@ -265,7 +264,8 @@ func ReporteMatriculas(w http.ResponseWriter, r *http.Request) {
 			height="100" fill="currentColor" class="bi bi-table" viewBox="0 0 16 16">
 			  <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm15 2h-4v3h4V4zm0 4h-4v3h4V8zm0 4h-4v3h3a1 1 0 0 0 1-1v-2zm-5 3v-3H6v3h4zm-5 0v-3H1v2a1 1 0 0 0 1 1h3zm-4-4h4V8H1v3zm0-4h4V4H1v3zm5-3v3h4V4H6zm4 4H6v3h4V8z"/>
 			</svg>`,
-		Data: nil,
+		Data:    nil,
+		Rutaget: "/reporteMatriculas",
 	}
 
 	if yearStr != "" {
@@ -299,7 +299,8 @@ func PromedioRangoEdad(w http.ResponseWriter, r *http.Request) {
 			height="100" fill="currentColor" class="bi bi-calendar3-range-fill" viewBox="0 0 16 16">
 			  <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2h16a2 2 0 0 0-2-2H2zM0 8V3h16v2h-6a1 1 0 1 0 0 2h6v7a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-4h6a1 1 0 1 0 0-2H0z"/>
 			</svg>`,
-		Data: nil,
+		Data:    nil,
+		Rutaget: "/promedioRangoEdad",
 	}
 
 	if edad1Str != "" && edad2Str != "" {
