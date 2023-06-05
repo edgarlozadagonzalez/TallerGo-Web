@@ -1,0 +1,41 @@
+{{template "head" .}}
+{{template "header" .}}
+<div class="container my-5">
+    <div class="p-5 text-center bg-body-tertiary rounded-3 tarjeta">
+        {{.Icon}}
+        <h1 class="text-body-emphasis">{{.H1}}</h1>
+        <p class="text-body-emphasis"></p>{{.Mensaje}}</p>
+        <form action="{{.Rutaget}}" method="GET" class="text-center">
+            <div class="form-group row justify-content-center">
+                <div class="form-group col-md-4">
+                    <label for="inputIndex">Código</label>
+                    <input type="number" class="form-control" id="inputIndex" name="index" min="0" required>
+                    <label for="inputNombre">Nombre</label>
+                    <input type="text" class="form-control" id="inputNombre" name="nombre" required>
+                    <label for="inputApellido">Apellido</label>
+                    <input type="text" class="form-control" id="inputApellido" name="apellido" required>
+                    <label for="inputEdad">Edad</label>
+                    <input type="number" class="form-control" id="inputEdad" name="edad" min="0" required>
+                    <label for="inputEdad">Género</label>
+                    <select class="form-control" id="inputGroupSelect01" name="gender">
+                        <option selected>Elige un género</option>
+                        <option value="male">Masculino</option>
+                        <option value="female">Femenino</option>
+                    </select>
+                    <label for="inputEmail">Email</label>
+                    <input type="email" class="form-control" id="inputEmail" name="email">
+                    <label for="inputPhone">Telefono</label>
+                    <input type="text" class="form-control" id="inputPhone" name="phone" min="0">
+                    <label for="inputAddress">Dirección</label>
+                    <input type="text" class="form-control" id="inputAddress" name="address">
+                    <label for="inputAbout">About</label>
+                    <textarea class="form-control" id="inputAbout" name="about" rows="3"></textarea>
+                    <label for="inputMatriculado">Matriculado</label>
+                    <input type="text" class="form-control" id="inputMatriculado" name="matriculado">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Agregar</button>
+        </form>
+    </div>
+</div>
+{{template "footer" .}}

@@ -1,0 +1,25 @@
+{{template "head" .}}
+{{template "header" .}}
+<div class="container my-5">
+    <div class="p-5 text-center bg-body-tertiary rounded-3 tarjeta">
+        {{.Icon}}
+        <h1 class="text-body-emphasis">{{.H1}}</h1>
+        <p class="text-body-emphasis"></p>{{.Mensaje}}</p>
+        <form action="{{.Rutaget}}" method="GET" class="text-center">
+            <div class="form-group row justify-content-center">
+                <div class="form-group col-md-4">
+                    <label for="cursoID">ID</label>
+                    <input type="number" class="form-control" id="cursoID" name="cursoID" min="0" required>
+                    <label for="nombre">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" required>
+                    <label for="nota">Nota (0-5)</label>
+                    <input type="number" step="0.01" class="form-control" id="nota" name="nota" min="0" max="5">
+                    <label for="estudianteID">ID del Estudiante</label>
+                    <input type="number" class="form-control" id="estudianteID" name="estudianteID" min="0" required>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Agregar</button>
+        </form>
+    </div>
+</div>
+{{template "footer" .}}

@@ -177,3 +177,40 @@ func ObtenerNotasPorRangoEdad(estudiantes []models.Estudiante, edadMin int, edad
 	estudiantesRangoEdad := ObtenerEstudiantesPorRangoEdad(estudiantes, edadMin, edadMax)
 	return ObtenerNotas(estudiantesRangoEdad)
 }
+
+func AgregarEstudiante(estudiantes []models.Estudiante, estudiante models.Estudiante) []models.Estudiante {
+	estudiantes = append(estudiantes, estudiante)
+	return estudiantes
+}
+
+func BuscarEstudiante(estudiantes []models.Estudiante, index int) *models.Estudiante {
+	for _, estudiante := range estudiantes {
+		if estudiante.Index == index {
+			return &estudiante
+		}
+	}
+	return nil
+}
+
+func ActualizarEstudiante(estudiantes []models.Estudiante, estudiante models.Estudiante) []models.Estudiante {
+	for i, est := range estudiantes {
+		if est.Index == estudiante.Index {
+			estudiantes[i] = estudiante
+		}
+	}
+	return estudiantes
+}
+
+func CursoExistente(cursoAgregar models.Curso, estudiante models.Estudiante) bool {
+	for _, curso := range estudiante.Cursos {
+		if curso.ID == cursoAgregar.ID {
+			return true
+		}
+	}
+	return false
+}
+
+func AgregarCurso(curso models.Curso, estudiante models.Estudiante) models.Estudiante {
+	estudiante.Cursos = append(estudiante.Cursos, curso)
+	return estudiante
+}

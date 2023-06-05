@@ -18,6 +18,7 @@ type PageData struct {
 	Icon    string
 	Data    interface{}
 	Rutaget string
+	Mensaje string
 }
 
 func Index(w http.ResponseWriter, r *http.Request) {
@@ -354,4 +355,118 @@ func ObtenerEstudiantes() []models.Estudiante {
 		fmt.Printf("Error: %v\n", err)
 	}
 	return listestudiantes
+}
+
+func AgregarEstudiante(w http.ResponseWriter, r *http.Request) {
+	indexStr := r.FormValue("index")
+	edadStr := r.FormValue("edad")
+
+	filepath := "views/agregarEstudiante.html"
+	data := PageData{
+		Title: "TallerGO-Web | Agregar Estudiante",
+		H1:    "Agregar estudiante",
+		Icon: `<svg xmlns="http://www.w3.org/2000/svg" class="bi mt-4 mb-3" width="100" height="100" fill="currentColor" class="bi bi-calendar3-range-fill" viewBox="0 0 16 16">
+		  <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2h16a2 2 0 0 0-2-2H2zM0 8V3h16v2h-6a1 1 0 1 0 0 2h6v7a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-4h6a1 1 0 1 0 0-2H0z"/>
+		</svg>`,
+		Data:    nil,
+		Rutaget: "/estudiante/agregarEstudiante",
+	}
+
+	if indexStr != "" && edadStr != "" {
+		index, err := strconv.Atoi(indexStr)
+		if err != nil {
+			http.Error(w, "El código de estudiante no es un número válido", http.StatusBadRequest)
+			return
+		}
+		edad, err := strconv.Atoi(edadStr)
+		if err != nil {
+			http.Error(w, "La edad no es un número válido", http.StatusBadRequest)
+			return
+		}
+
+		estudiante := models.Estudiante{
+			Index:       index,
+			Nombre:      r.FormValue("nombre"),
+			Apellido:    r.FormValue("apellido"),
+			Edad:        edad,
+			Gender:      r.FormValue("genero"),
+			Email:       r.FormValue("email"),
+			Phone:       r.FormValue("phone"),
+			Address:     r.FormValue("address"),
+			About:       r.FormValue("about"),
+			Matriculado: r.FormValue("matriculado"),
+		}
+
+		estudiantes := ObtenerEstudiantes()
+		est := repositories.BuscarEstudiante(estudiantes, index)
+		if est == nil {
+			estudiantes = repositories.AgregarEstudiante(estudiantes, estudiante)
+			filename := "data/generated.json"
+			err := json.AgregarEstudianteJSON(filename, estudiantes)
+			if err != nil {
+				data.Mensaje = fmt.Sprintf("Hubo un error durante el guardado del estudiante: %s", err)
+			}
+			data.Mensaje = fmt.Sprintf("El estudiante con el código %d fue agregado exitosamente", index)
+		} else {
+			data.Mensaje = fmt.Sprintf("El código de estudiante %d ya existe, por favor ingrese otro", index)
+		}
+	}
+	CargarTemplate(w, filepath, data)
+}
+func AgregarCurso(w http.ResponseWriter, r *http.Request) {
+	cursoIDStr := r.FormValue("cursoID")
+	notaStr := r.FormValue("nota")
+	estudianteIDStr := r.FormValue("estudianteID")
+
+	filepath := "views/agregarCurso.html"
+	data := PageData{
+		Title: "TallerGO-Web | Agregar Curso",
+		H1:    "Agregar curso",
+		Icon: `<svg xmlns="http://www.w3.org/2000/svg" class="bi mt-4 mb-3" width="100" height="100" fill="currentColor" class="bi bi-calendar3-range-fill" viewBox="0 0 16 16">
+		  <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2h16a2 2 0 0 0-2-2H2zM0 8V3h16v2h-6a1 1 0 1 0 0 2h6v7a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-4h6a1 1 0 1 0 0-2H0z"/>
+		</svg>`,
+		Data:    nil,
+		Rutaget: "/curso/agregarCurso",
+	}
+
+	if cursoIDStr != "" && notaStr != "" && estudianteIDStr != "" {
+		cursoID, err := strconv.Atoi(cursoIDStr)
+		if err != nil {
+			http.Error(w, "El ID no es un número válido", http.StatusBadRequest)
+			return
+		}
+		nota, err := strconv.ParseFloat(notaStr, 64)
+		if err != nil {
+			http.Error(w, "La nota no es un número válido", http.StatusBadRequest)
+			return
+		}
+
+		estudianteID, err := strconv.Atoi(estudianteIDStr)
+		if err != nil {
+			http.Error(w, "El ID del estudiante no es un número válido", http.StatusBadRequest)
+			return
+		}
+
+		estudiantes := ObtenerEstudiantes()
+		estudiante := repositories.BuscarEstudiante(estudiantes, estudianteID)
+		if estudiante == nil {
+			data.Mensaje = fmt.Sprintf("El código de estudiante %d no existe, por favor ingrese uno válido", estudianteID)
+		} else {
+			curso := models.Curso{
+				ID:     cursoID,
+				Nombre: r.FormValue("nombre"),
+				Nota:   nota,
+			}
+			estudianteCursoAgregado := repositories.AgregarCurso(curso, *estudiante)
+			filename := "data/generated.json"
+			estudiantesActualizado := repositories.ActualizarEstudiante(estudiantes, estudianteCursoAgregado)
+			err := json.AgregarEstudianteJSON(filename, estudiantesActualizado)
+			if err != nil {
+				data.Mensaje = fmt.Sprintf("Hubo un error durante el guardado del curso: %s", err)
+			}
+			data.Mensaje = fmt.Sprintf("El curso de %s para el estudiante %s fue agregado exitosamente", curso.Nombre, estudiante.Nombre)
+		}
+	}
+
+	CargarTemplate(w, filepath, data)
 }
